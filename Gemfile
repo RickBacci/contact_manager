@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-
-
+gem 'rake'
+gem 'pg'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 #gem 'rails', '4.2.1'
 gem 'rails', '4.1.6'
@@ -34,7 +34,7 @@ gem 'unicorn'
 # gem 'capistrano-rails', group: :development
 
 group :deployment do
-  gem 'pg'
+
 end
 
 group :development, :test do
@@ -49,6 +49,6 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rspec-rails'
-  gem 'sqlite3'
+ # gem 'sqlite3'
 end
 
