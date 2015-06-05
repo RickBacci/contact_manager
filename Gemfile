@@ -33,8 +33,8 @@ gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :deployment do
-
+group :production do
+  gem 'rails_12factor'
 end
 
 group :development, :test do
@@ -49,6 +49,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rspec-rails'
+
  # gem 'sqlite3'
 end
 
