@@ -2,9 +2,6 @@ require 'rails_helper'
 
 RSpec.describe PhoneNumbersController, type: :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # PhoneNumber. As you add validations to PhoneNumber, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) {
     { number: '1234567890', person_id: 1 }
   }
@@ -13,9 +10,6 @@ RSpec.describe PhoneNumbersController, type: :controller do
     { number: nil, person_id: nil }
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # PhoneNumbersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
@@ -131,6 +125,10 @@ RSpec.describe PhoneNumbersController, type: :controller do
   end
 
   describe "DELETE #destroy" do
+
+    let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith') }
+    let(:valid_attributes) {{ number: '555-1234', person_id: alice.id }} 
+
     it "destroys the requested phone_number" do
       phone_number = PhoneNumber.create! valid_attributes
       expect {
@@ -138,10 +136,10 @@ RSpec.describe PhoneNumbersController, type: :controller do
       }.to change(PhoneNumber, :count).by(-1)
     end
 
-    it "redirects to the phone_numbers list" do
+    it "redirects to the phone_numbers person" do
       phone_number = PhoneNumber.create! valid_attributes
       delete :destroy, {:id => phone_number.to_param}, valid_session
-      expect(response).to redirect_to(phone_numbers_url)
+      expect(response).to redirect_to(phone_number.person)
     end
   end
 
